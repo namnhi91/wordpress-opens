@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640">
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Wordpress-opens by namnhi91</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/namnhi91/wordpress-opens">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Wordpress-opens</h1>
+            <h2></h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/namnhi91/wordpress-opens/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/namnhi91/wordpress-opens/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h1>
+<a id="wordpress-on-openshift" class="anchor" href="#wordpress-on-openshift" aria-hidden="true"><span class="octicon octicon-link"></span></a>WordPress on OpenShift</h1>
+
+<p>This git repository helps you get up and running quickly w/ a WordPress installation
+on OpenShift.  The backend database is MySQL and the database name is the
+same as your application name (using getenv('OPENSHIFT_APP_NAME')).  You can name
+your application whatever you want.  However, the name of the database will always
+match the application so you might have to update .openshift/action_hooks/build.</p>
+
+<h2>
+<a id="running-on-openshift" class="anchor" href="#running-on-openshift" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running on OpenShift</h2>
+
+<p>Create an account at <a href="https://www.openshift.com">https://www.openshift.com</a> and install the client tools (run 'rhc setup' first)</p>
+
+<p>Create a php-5.4 application (you can call your application whatever you want)</p>
+
+<pre><code>rhc app create wordpress php-5.4 mysql-5.5 --from-code=https://github.com/namnhi91/wordpress-opens
+</code></pre>
+
+<p>That's it, you can now checkout your application at:</p>
+
+<pre><code>http://wordpress-$yournamespace.rhcloud.com
+</code></pre>
+
+<p>You'll be prompted to set an admin password and name your WordPress site the first time you visit this
+page.</p>
+
+<p>Note: When you upload plugins and themes, they'll get put into your OpenShift data directory
+on the gear ($OPENSHIFT_DATA_DIR).  If you'd like to check these into source control, download the
+plugins and themes directories and then check them directly into php/wp-content/themes, php/wp-content/plugins.</p>
+
+<h1>
+<a id="notes" class="anchor" href="#notes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Notes</h1>
+
+<p>GIT_ROOT/.openshift/action_hooks/deploy:
+    This script is executed with every 'git push'.  Feel free to modify this script
+    to learn how to use it to your advantage.  By default, this script will create
+    the database tables that this example uses.</p>
+
+<pre><code>If you need to modify the schema, you could create a file
+GIT_ROOT/.openshift/action_hooks/alter.sql and then use
+GIT_ROOT/.openshift/action_hooks/deploy to execute that script (make sure to
+back up your application + database w/ 'rhc app snapshot save' first :) )
+</code></pre>
+
+<h2>
+<a id="security-considerations" class="anchor" href="#security-considerations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Security Considerations</h2>
+
+<p>Consult the WordPress documentation for best practices regarding securing your wordpress installation.  OpenShift
+automatically generates unique secret keys for your deployment into wp-config.php, but you may feel more
+comfortable following the WordPress documentation directly.</p>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/namnhi91">namnhi91</a> can be found on <a href="https://github.com/namnhi91/wordpress-opens">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>
